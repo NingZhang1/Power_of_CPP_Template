@@ -27,3 +27,5 @@ Unexpected_Template_Paramter: Unexpected_Template_Paramter.o
 Unexpected_Template_Paramter.o: Unexpected_Template_Paramter.cpp 
 	$(CXX) $(CXXFLAGS)  -c -o Unexpected_Template_Paramter.o Unexpected_Template_Paramter.cpp 
 
+clean:
+	rm *.o
