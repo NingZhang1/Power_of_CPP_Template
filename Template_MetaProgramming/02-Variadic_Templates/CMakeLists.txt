@@ -7,4 +7,5 @@ foreach(SOURCE ${CPP_SOURCES})
     get_filename_component(EXECUTABLE_NAME ${SOURCE} NAME_WE)
     # 为每个源文件添加一个可执行目标
     add_executable(${EXECUTABLE_NAME} ${SOURCE})
+    set_target_properties(${EXECUTABLE_NAME} PROPERTIES OUTPUT_NAME "${EXECUTABLE_NAME}.exe")
 endforeach()
