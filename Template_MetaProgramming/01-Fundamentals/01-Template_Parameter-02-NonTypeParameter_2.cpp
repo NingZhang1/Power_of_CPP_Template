@@ -11,6 +11,8 @@
 #include <functional>
 #include <memory>
 
+// a concrete examples, you can use function ptr as template parameter
+
 struct device
 {
     virtual void output() = 0;
@@ -68,10 +70,12 @@ namespace string_as_template_parameter
         char value[N];
     };
 
-    template <string_literal x>
+#if __cplusplus >= 202002L
+    template <string_literal<10> x>
     struct foo
     {
     };
+#endif
 };
 
 template <auto x> /// NOTE: In C++17, you can use auto specifier (including the auto* and auto& forms) or decltype(auto) to specify non-type template parameters!
@@ -103,7 +107,6 @@ int main()
     /// w1 w2 is not the same type
 
     static_assert(!std::is_same_v<decltype(w1), decltype(w2)>);
-
     {
         std::unique_ptr<device> w1 = std::make_unique<smart_device<hello_command, &hello_command::say_hello_in_english>>(&cmd);
         w1->output();
