@@ -46,11 +46,14 @@ public:
     
     void print() const noexcept {
         std::lock_guard<std::mutex> l(animal_mutex); 
+
         /// NOTE: the lock_guard holds a lock until it is destroyed ! 
         /// hence it is equivalent to the following code:
         // animal_mutex.lock();
         // ...
         // animal_mutex.unlock();
+        /// NOTE: use lock_guard is a RAII-style coding, which is much less error-prone than using lock() and unlock() directly
+        
         auto n_animals{ l_friends.size() };
         // cout << format("Animal: {}, friends: ", s_name);
         printf("Animal: %s, friends: ", s_name.data());
