@@ -5,10 +5,6 @@ project(CPPTemplateProgramming VERSION 1.0)
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
-# find package 
-
-find_package(TBB REQUIRED)
-
 # 设置优化级别为-O3
 add_compile_options(-O3)
     
