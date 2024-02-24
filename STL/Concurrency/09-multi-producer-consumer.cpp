@@ -48,7 +48,7 @@ void producer(const size_t id)
         unique_lock<mutex> lock(q_mutex);
         cv_producer.wait(lock, [&]
                          { return qs.size() < queue_limit; });
-        /// NOTES: this conditional number is used to wait until the queue is not full and acquire the lock 
+        /// NOTES: this conditional number is used to wait until the queue is not full and acquire the lock
         /// The one get the lock will wake up
         // qs.push_back(format("pid {}, qs  {}, item {:02}\n", id, qs.size(), i + 1));
         char buf[80];
@@ -67,8 +67,8 @@ void consumer(const size_t id)
         unique_lock<mutex> lock(q_mutex);
         cv_consumer.wait_for(lock, consumer_wait, [&]
                              { return !qs.empty(); });
-        /// NOTES: this conditional number is used to wait until the queue is not empty and acquire the lock 
-        /// OR upto consumer_wait time, to prevent the consumer from waiting forever   
+        /// NOTES: this conditional number is used to wait until the queue is not empty and acquire the lock
+        /// OR upto consumer_wait time, to prevent the consumer from waiting forever
         if (!qs.empty())
         {
             // cout << format("cid {}: {}", id, qs.front());

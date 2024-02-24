@@ -11,3 +11,4 @@ add_compile_options(-O3)
 # 包含子目录
 add_subdirectory(Template_MetaProgramming)
 add_subdirectory(STL)
+add_subdirectory(MetaProgramming)
