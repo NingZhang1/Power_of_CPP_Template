@@ -65,10 +65,11 @@ int main()
     /// deref_data is a function
     /// Deferences the data property associated with the element referenced by an associative iterator.
 
-    typedef map<pair<float, int &>> map;
+    // typedef map<pair<float, int &>> map;
 
-    int i(0);
-    map m(1.0f, i);
-    assert(deref_data(begin(m)) == 0);
-    assert(&(deref_data(begin(m))) == &i);
+    // int i(0);
+    // i = 0;
+    // map m(1.0f, i);
+    // assert(deref_data(begin(m)) == 0);
+    // assert(&(deref_data(begin(m))) == &i);
 }

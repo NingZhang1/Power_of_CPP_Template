@@ -53,7 +53,7 @@ namespace example_03
     using customer_invoice_addresses_t = customer_addresses_t<invoice_address_t>;
 };
 
-// Alias templates can neither by fully nor partially specialized.
+// *WARNING* Alias templates can neither by fully nor partially specialized.
 // which means that the following is not allowed:
 
 namespace example_04

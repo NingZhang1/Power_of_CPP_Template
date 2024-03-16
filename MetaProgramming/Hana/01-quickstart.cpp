@@ -76,5 +76,4 @@ int main()
 
     Person john{"John", 30};
     serialize(std::cout, john);
-    
 }
