@@ -180,6 +180,7 @@ namespace Example03
 {
     template <typename T, size_t S>
     using list_t = typename std::conditional<S == 1, T, std::vector<T>>::type;
+    /// using list_t = std::conditional_t<S == 1, T, std::vector<T>>; /// the same as above, in C++14
     /// the above trick is used to define a type alias that is either T or std::vector<T> based on the value of S.
     /// it avoids the need to define a new type trait as the specialization of alias templates is not allowed.
 }
