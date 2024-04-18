@@ -52,9 +52,9 @@ namespace Examples03
    requires A<T> || B<T>  // disjunction of two atomic constraints
    void f() {}
 
-   template <typename T>
-   requires (A<T> || B<T>)
-   void f() {}
+   // template <typename T>
+   // requires (A<T> || B<T>)
+   // void f() {}
 
    template <typename T>
    requires A<T> && (!A<T> || B<T>)
