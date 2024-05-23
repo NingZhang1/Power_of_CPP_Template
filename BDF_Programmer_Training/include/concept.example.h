@@ -2,7 +2,7 @@
  * @Author: Ning Zhang
  * @Date: 2024-05-23 13:49:43
  * @Last Modified by: Ning Zhang
- * @Last Modified time: 2024-05-23 14:01:17
+ * @Last Modified time: 2024-05-23 14:38:37
  */
 
 #pragma once
@@ -16,6 +16,7 @@ namespace BDF_programmer_training
         template <typename T>
         concept MatrixView = requires(T t) {
             typename T::scalar_type;
+            requires std::floating_point<typename T::scalar_type>;
             typename T::iter_type;
             T::constant;
             T::scalar_size;
