@@ -9,6 +9,8 @@
 
 #include "basic.h"
 
+#include <concepts>
+
 namespace BDF_programmer_training
 {
     namespace poly_example01
@@ -33,7 +35,7 @@ namespace BDF_programmer_training
 
     namespace poly_example02
     {
-        template <std::floating_point T>
+        template <::std::floating_point T>
         class VecView
         {
         public:

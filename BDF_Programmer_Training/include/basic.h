@@ -69,17 +69,16 @@
 
 ///// register std::complex<double> as float_point
 
-namespace std
+namespace std {
+template <>
+struct __is_floating_point_helper<std::complex<double>> : public std::true_type
 {
-    template <>
-    struct __is_floating_point_helper<std::complex<double>> : public std::true_type
-    {
-    };
-    template <>
-    struct __is_floating_point_helper<std::complex<float>> : public std::true_type
-    {
-    };
-} // namespace std
+};
+template <>
+struct __is_floating_point_helper<std::complex<float>> : public std::true_type
+{
+};
+}; // namespace std
 
 ///// some macro
 

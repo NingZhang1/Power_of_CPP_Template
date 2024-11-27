@@ -37,6 +37,6 @@ int main()
     CIVecView_1<double> ci_vec_view_1(nullptr, 10, 10);
     CIVecView_1<double> ci_vec_view_2(nullptr, 10, 10);
 
-    Check_CIVecView(ci_vec_view_1, ci_vec_view_2);
+    // Check_CIVecView(ci_vec_view_1, ci_vec_view_2);
 
 }
