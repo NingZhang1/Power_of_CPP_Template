@@ -2,7 +2,7 @@
  * @Author: Ning Zhang
  * @Date: 2024-05-23 09:34:48
  * @Last Modified by: Ning Zhang
- * @Last Modified time: 2024-05-23 12:50:00
+ * @Last Modified time: 2024-11-29 19:44:03
  */
 
 #include "./include/polymorphism_example.h"
@@ -19,6 +19,7 @@ int main()
         std::vector<complex_double> cx = {{1, 2}, {3, 4}, {5, 6}, {7, 8}, {9, 10}};
         std::vector<complex_double> cy = {{11, 12}, {13, 14}, {15, 16}, {17, 18}, {19, 20}};
 
+        // 同样的函数名可用于不同类型的输入参数
         AXPY(x.size(), alpha, x.data(), 1, y.data(), 1);
         AXPY(cx.size(), complex_double(2, 0), cx.data(), 1, cy.data(), 1);
 
@@ -53,6 +54,7 @@ int main()
         VecView<complex_double> vcx(cx.data(), cx.size());
         VecView<complex_double> vcy(cy.data(), cy.size());
 
+        // 更加简洁的调用方式
         AXPY(alpha, vx, vy);
         AXPY(complex_double(2, 0), vcx, vcy);
 

@@ -42,36 +42,29 @@ namespace BDF_programmer_training
         inline float NORM_SQUARE(const complex_float X);
         inline double NORM_SQUARE(const complex_double X);
 
-        // for historical reason
-
-        inline float norm_square(const float X);
-        inline double norm_square(const double X);
-        inline float norm_square(const complex_float X);
-        inline double norm_square(const complex_double X);
-
         /* PRINT */
 
         template <std::floating_point Scalar>
-        void print_scalar(const Scalar);
+        void PRINT_SCALAR(const Scalar);
 
         /* PRINT_MATRIX */
 
         template <std::floating_point Scalar>
-        void print_matrix(const Scalar *_Input, const int nRow, const int nCol);
+        void PRINT_MATRIX(const Scalar *_Input, const int nRow, const int nCol);
 
         /* COMPLEX CONJUGATE */
 
-        inline float ComplexConjugate(const float X);
-        inline double ComplexConjugate(const double X);
-        inline complex_float ComplexConjugate(const complex_float X);
-        inline complex_double ComplexConjugate(const complex_double X);
-        inline void ComplexConjugate(const int N, double *X);
-        inline void ComplexConjugate(const int N, complex_double *X);
+        inline float CONJ(const float X);
+        inline double CONJ(const double X);
+        inline complex_float CONJ(const complex_float X);
+        inline complex_double CONJ(const complex_double X);
+        inline void CONJ(const int N, double *X);
+        inline void CONJ(const int N, complex_double *X);
 
         /* HERMITIAN CONJUGATE */
 
         template <std::floating_point Scalar>
-        std::vector<Scalar> HermitianConjugate(std::vector<Scalar> &_Input, const int nRow, const int nCol);
+        std::vector<Scalar> HERMITIAN_CONJ(std::vector<Scalar> &_Input, const int nRow, const int nCol);
 
         /* ----- BLAS 1 ----- */
 
@@ -152,17 +145,17 @@ namespace BDF_programmer_training
 
         /* Matrix Product */
 
-        inline void MatrixProduct(const int M, const int K, const int N, const float alpha, const float beta, const float *A, const float *B, float *C);
-        inline void MatrixProduct(const int M, const int K, const int N, const double alpha, const double beta, const double *A, const double *B, double *C);
-        inline void MatrixProduct(const int M, const int K, const int N, const complex_float alpha, const complex_float beta, const complex_float *A, const complex_float *B,
+        inline void MATRIXMUL(const int M, const int K, const int N, const float alpha, const float beta, const float *A, const float *B, float *C);
+        inline void MATRIXMUL(const int M, const int K, const int N, const double alpha, const double beta, const double *A, const double *B, double *C);
+        inline void MATRIXMUL(const int M, const int K, const int N, const complex_float alpha, const complex_float beta, const complex_float *A, const complex_float *B,
                                   complex_float *C);
-        inline void MatrixProduct(const int M, const int K, const int N, const complex_double alpha, const complex_double beta, const complex_double *A, const complex_double *B,
+        inline void MATRIXMUL(const int M, const int K, const int N, const complex_double alpha, const complex_double beta, const complex_double *A, const complex_double *B,
                                   complex_double *C);
 
-        inline void MatrixProduct(const int M, const int K, const int N, const float *A, const float *B, float *C);
-        inline void MatrixProduct(const int M, const int K, const int N, const double *A, const double *B, double *C);
-        inline void MatrixProduct(const int M, const int K, const int N, const complex_float *A, const complex_float *B, complex_float *C);
-        inline void MatrixProduct(const int M, const int K, const int N, const complex_double *A, const complex_double *B, complex_double *C);
+        inline void MATRIXMUL(const int M, const int K, const int N, const float *A, const float *B, float *C);
+        inline void MATRIXMUL(const int M, const int K, const int N, const double *A, const double *B, double *C);
+        inline void MATRIXMUL(const int M, const int K, const int N, const complex_float *A, const complex_float *B, complex_float *C);
+        inline void MATRIXMUL(const int M, const int K, const int N, const complex_double *A, const complex_double *B, complex_double *C);
 
         inline void GEMM(const CBLAS_LAYOUT Layout, const CBLAS_TRANSPOSE TransA, const CBLAS_TRANSPOSE TransB, const MKL_INT M, const MKL_INT N, const MKL_INT K, const float alpha, const float *A,
                          const MKL_INT lda, const float *B, const MKL_INT ldb, const float beta, float *C, const MKL_INT ldc);

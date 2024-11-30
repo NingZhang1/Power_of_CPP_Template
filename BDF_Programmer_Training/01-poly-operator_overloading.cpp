@@ -75,84 +75,12 @@ public:
     }
 };
 
-// Expression template classes
-template <typename LHS, typename RHS>
-class BinaryExpression
-{
-public:
-    const LHS& lhs;
-    const RHS& rhs;
-
-    BinaryExpression(const LHS& lhs, const RHS& rhs) : lhs(lhs), rhs(rhs) {}
-
-    double operator[](size_t i) const { return lhs[i] + rhs[i]; }
-
-    size_t size() const { return lhs.size(); }
-};
-
-template <typename VecType>
-class ScalarMult
-{
-public:
-    const VecType& vec;
-    double         scalar;
-
-    ScalarMult(const VecType& vec, double scalar) : vec(vec), scalar(scalar) {}
-    ScalarMult(double scalar, const VecType& vec) : vec(vec), scalar(scalar) {}
-
-    double operator[](size_t i) const { return vec[i] * scalar; }
-
-    size_t size() const { return vec.size(); }
-};
-
-template <typename LHS, typename RHS>
-BinaryExpression<LHS, RHS> operator+(const LHS& lhs, const RHS& rhs)
-{
-    return BinaryExpression<LHS, RHS>(lhs, rhs);
-}
-
-template <typename VecType>
-ScalarMult<VecType> operator*(double scalar, const VecType& vec)
-{
-    return ScalarMult<VecType>(vec, scalar);
-}
-
-template <typename VecType>
-ScalarMult<VecType> operator*(const VecType& vec, double scalar)
-{
-    return ScalarMult<VecType>(vec, scalar);
-}
-
-// A Vector wrapper for expression templates
-class ETVector
-{
-public:
-    std::vector<double> data;
-
-    ETVector(size_t size) : data(size) {}
-    ETVector(const std::vector<double>& vec) : data(vec) {}
-
-    template <typename Expression>
-    ETVector& operator=(const Expression& expr)
-    {
-        for (size_t i = 0; i < data.size(); ++i)
-        {
-            data[i] = expr[i];
-        }
-        return *this;
-    }
-
-    double operator[](size_t i) const { return data[i]; }
-    size_t size() const { return data.size(); }
-};
-
 // Testing
 int main()
 {
     const size_t        N = 1'000'000'0; // Vector size
     std::vector<double> x(N, 1.0), y(N, 2.0), z(N, 0.0);
     Vector              vx(x), vy(y), vz(z);
-    ETVector            etx(x), ety(y), etz(N);
 
     double a = 2.0, b = 3.0;
 
@@ -167,7 +95,7 @@ int main()
 
     z = a * x + b * y;
 
-    // Operator overloading version
+    // Operator overloading version, you should find it very slow.
     start = std::chrono::high_resolution_clock::now();
     for (int i = 0; i < 10; ++i)
     {
@@ -175,15 +103,6 @@ int main()
     }
     end = std::chrono::high_resolution_clock::now();
     std::cout << "Operator overloading version: " << std::chrono::duration_cast<std::chrono::microseconds>(end - start).count() / 10 << " mu s\n";
-
-    // Expression template version
-    start = std::chrono::high_resolution_clock::now();
-    for (int i = 0; i < 100; ++i)
-    {
-        etz = (etx * a + ety * b);
-    }
-    end = std::chrono::high_resolution_clock::now();
-    std::cout << "Expression template version: " << std::chrono::duration_cast<std::chrono::microseconds>(end - start).count() / 100 << " mu s\n";
 
     return 0;
 }
