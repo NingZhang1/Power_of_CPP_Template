@@ -24,7 +24,6 @@ add_executable(type_traits 04-type_traits.cpp)
 add_executable(concept 05-concept.cpp)
 add_executable(expression_template 06-expression_template.cpp)
 
-# 定义目标列表
 set(TARGETS
     poly_function_overloading
     poly_operator_overloading
@@ -34,9 +33,8 @@ set(TARGETS
     expression_template
 )
 
-# 遍历每个目标并设置包含目录
 foreach(TARGET ${TARGETS})
     target_include_directories(${TARGET} PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
-    target_compile_definitions(${TARGET} PRIVATE MKL)
-    target_link_libraries(${TARGET} PRIVATE MKL::MKL)
+    target_compile_options(${TARGET} PRIVATE ${MKL_INCLUDE_DIRS} ${OpenMP_CXX_FLAGS})
+    target_link_libraries(${TARGET} PRIVATE ${OpenMP_CXX_LIBRARIES} mkl_intel_ilp64 mkl_sequential mkl_core pthread m dl)
 endforeach()
